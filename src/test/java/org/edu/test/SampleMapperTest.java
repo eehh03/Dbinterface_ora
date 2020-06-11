@@ -70,8 +70,13 @@ public class SampleMapperTest {
 	//학생실습용 추가
 	@Test
 	public void testInsertMember()throws Exception{		
+		/*int vRandom = 0;
+		Random ran = new Random();
+		vRandom = ran.nextInt();*/
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
+		String today= formatter.format(new java.util.Date());
 		MemberVO vo = new MemberVO();
-		vo.setUserid("user3");
+		vo.setUserid("user_" + today);
 		vo.setUserpw("1234");
 		vo.setUsername("홍길동");
 		vo.setEmail("user3@edu.com");
