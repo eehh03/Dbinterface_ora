@@ -12,13 +12,29 @@ import org.edu.vo.MemberVO;
  *    가장 큰 차이는 인터페이스의 구현을 mybatis-spring 에서 자동으로
  *    생성함.
  */
-public interface IF_SampleMapper {
+public interface IF_SampleDAO {
+	// 회원정보 입력-조회-수정-삭제 메서드 명세
+	public void insertMember(MemberVO vo);
+	public List<MemberVO> selectMember();
+	public void updateMember(MemberVO vo);
+	public void deleteMember(String userid);
 	
 	// 인터페이스에서 dB접속 테스트
 	//@Select("select current_timestamp from member") //Hsql용
-	//@Select("select now()") //Mysql용
-	@Select("select sysdate from dual") //Oracle용
+	@Select("select now()") //Mysql용
 	public String getTime();
+	
+	/*
+	 *    MyBatis 어노테이션을 사용해서 두 개 이상의 파라미터에 각각
+	 *    @Param 어노테이션을 붙여서 처리할 수 있음.
+	 */
+	//DB연동시키는방식3-스프링boot에서 주로사용 : 메서드상단에 쿼리를 등록-@Select
+	@Select("select username from member "
+			+ " where userid = #{uid} and userpw = #{upw}")
+	public String getUname(
+			@Param("uid") String uid,
+			@Param("upw") String upw
+	);
 	
 	/*
 	 *    Mapper 인터페이스를 이용하는 또 다른 장점은 기존의 XML 을
@@ -35,25 +51,8 @@ public interface IF_SampleMapper {
 	public String getUserId(
 			@Param("username") String username
 	);
-	public void insertMember(MemberVO vo) throws Exception;//학생 실습용 추가
-	public void updateMember(MemberVO vo) throws Exception;
-	public void deleteMember(String userid) throws Exception;//학생 실습용 추가
-	public List<MemberVO> listMember() throws Exception;//학생실습용 추가
-	
-	
-	/*
-	 *    MyBatis 어노테이션을 사용해서 두 개 이상의 파라미터에 각각
-	 *    @Param 어노테이션을 붙여서 처리할 수 있음.
-	 */
-	//DB연동시키는방식2-스프링boot에서 주로사용 : 메서드상단에 쿼리를 등록-@Select
-	@Select("select username from member "
-			+ " where userid = #{uid} and userpw = #{upw}")
-	public String getUname(
-			@Param("uid") String uid,
-			@Param("upw") String upw
-	);
-	
-	//DB연동방식3: 쿼리를 외부파일로 지정하는데, 클래스를 사용.
+		
+	//DB연동방식4: 쿼리를 외부파일로 지정하는데, 클래스를 사용.
 	// SampleSelectProvider 쿼리경로: /src/main/java/org/edu/dao/SampleSelectProvider.java
 	@SelectProvider(type=SampleSelectProvider.class, method="searchUname")
 	public String searchUname(
