@@ -16,22 +16,22 @@ public class SampleServiceImpl implements IF_SampleService {
 	
 	@Override
 	public void insertMember(MemberVO vo) throws Exception {
-		sampleDAO.insertMember(vo);		
+		//*학생작업		
 	}
 
 	@Override
 	public List<MemberVO> selectMember() throws Exception {
-		return sampleDAO.selectMember();
+		return null; //*학생작업
 	}
 
 	@Override
 	public void updateMember(MemberVO vo) throws Exception {
-		sampleDAO.updateMember(vo);
+		//*학생작업
 	}
 
 	@Override
 	public void deleteMember(String userid) throws Exception {
-		sampleDAO.deleteMember(userid);
+		//*학생작업
 	}
 
 }

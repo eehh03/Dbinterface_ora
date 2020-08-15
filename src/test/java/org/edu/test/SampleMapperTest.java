@@ -76,12 +76,15 @@ public class SampleMapperTest {
 		int randomInt = (int) (Math.random()*100);
 		testSelectMember();
 		System.out.println("위쪽은 입력 전 리스트 입니다.");
+		
 		MemberVO vo = new MemberVO();
-		vo.setUserid("user_" + randomInt);
-		vo.setUserpw("1234");
-		vo.setUsername("각시탈");
-		vo.setEmail("user10@test.com");
+		//*학생작업
+		//vo.setUserid("user_" + randomInt);
+		//vo.setUserpw("1234");
+		//vo.setUsername("각시탈");
+		//vo.setEmail("user10@test.com");
 		sampleService.insertMember(vo);
+		
 		System.out.println("아래쪽은 입력 후 리스트 입니다.");
 		testSelectMember();
 	}
@@ -90,13 +93,9 @@ public class SampleMapperTest {
 		List<MemberVO> list = sampleService.selectMember();
 		int cnt = 1;
 		for(MemberVO vo:list) {
-			System.out.println(
-					"번호: " + cnt++ + "번 " +
-					"아이디: " + vo.getUserid() +
-					" 암호: " + vo.getUserpw() +
-					" 이름: " + vo.getUsername() +
-					" 이메일: " + vo.getEmail()
-					);
+			System.out.print("회원인덱스[" + cnt + "]:");
+			vo.toString();
+			cnt = cnt + 1;
 		}
 	}
 	
@@ -106,11 +105,11 @@ public class SampleMapperTest {
 		System.out.println("위에서 수정 전 이름을 이름을 확인 하세요");
 		
 		MemberVO vo = new MemberVO();
-		//수정은 여러개의 변수값을 변경하기 하기 때문에 MemberVO클래스 변수를 매개변수로 사용한다.
-		vo.setUserid("user2");
-		vo.setUserpw("1234");
-		vo.setUsername("바야바");
-		vo.setEmail("abc@abc.com");
+		//*학생작업
+		//vo.setUserid("user2");
+		//vo.setUserpw("1234");
+		//vo.setUsername("바야바");
+		//vo.setEmail("abc@abc.com");
 		sampleService.updateMember(vo);
 		
 		System.out.println("아래는 수정 후 이름을 확인 하세요");
@@ -121,6 +120,7 @@ public class SampleMapperTest {
 	public void testDeleteMember() throws Exception {
 		testSelectMember();
 		sampleService.deleteMember("user_1");
+		
 		System.out.println("아래는 지운 후 회원리스트 입니다.");
 		testSelectMember();
 	}

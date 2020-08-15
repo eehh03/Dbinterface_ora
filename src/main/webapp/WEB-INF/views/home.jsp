@@ -30,12 +30,12 @@ tr, th, td {border:1px solid black;}
 		<c:forEach items="${memberList}" var="memberVO" varStatus="status">
 			<tr>
 				<td>${status.count}</td>
-				<td>${memberVO.userid}</td>
-				<td>${memberVO.userpw}</td>
-				<td>${memberVO.username}</td>
-				<td>${memberVO.email}</td>
-				<td>${memberVO.regdate}</td>
-				<td>${memberVO.updatedate}</td>
+				<td>*학생작업</td>
+				<td>*학생작업</td>
+				<td>*학생작업</td>
+				<td>*학생작업</td>
+				<td>*학생작업</td>
+				<td>*학생작업</td>
 			</tr>
 		</c:forEach>
 			
