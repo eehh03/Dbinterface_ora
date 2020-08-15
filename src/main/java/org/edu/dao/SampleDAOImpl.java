@@ -34,28 +34,4 @@ public class SampleDAOImpl implements IF_SampleDAO {
 		sqlSession.delete("org.edu.dao.IF_SampleDAO.deleteMember", userid);		
 	}
 
-	@Override
-	public String getTime() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getUname(String uid, String upw) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getUserId(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String searchUname(String type, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
