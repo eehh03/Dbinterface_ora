@@ -56,7 +56,7 @@ public class SampleMapperTest {
 	// interface 로 Mybatis 쿼리 사용 DI처리(Dependency Injcetion)
 	@Inject
 	private DataSource ds;
-	
+	// @Inject:자바에서 지원하는 어노테이션으로 객체의 타입이 일치하는 객체를 자동으로 주입
 	@Inject
 	private IF_SampleService sampleService; //인터페이스를 실행가능하게 mapper변수로 지정.
 	
@@ -64,12 +64,15 @@ public class SampleMapperTest {
 	public void testJunit() {
 		System.out.println("Junit테스트 확인");
 	}
-	
+	//@Test: @Test을 메소드위에 선언하여 해당 메소드를 테스트 대상으로 지정.
 	@Test
 	public void testDbConnect() throws SQLException {
 		Connection con = ds.getConnection();
 		System.out.println("데이터베이스 커넥션 결과:" + con);
 	}
+	//ds 변수는 DataSource.
+	//DataSource 객체의 getConnection( )는 커넥션 풀에 준비된 Connection 객체를 빌려오는 메소드. 
+	//빌려오는 Connection을 con에 담는다.
 		
 	@Test
 	public void testInsertMember() throws Exception {
@@ -79,10 +82,10 @@ public class SampleMapperTest {
 		
 		MemberVO vo = new MemberVO();
 		//*학생작업
-		//vo.setUserid("user_" + randomInt);
-		//vo.setUserpw("1234");
-		//vo.setUsername("각시탈");
-		//vo.setEmail("user10@test.com");
+		vo.setUserid("user_" + randomInt);
+		vo.setUserpw("1234");
+		vo.setUsername("각시탈");
+		vo.setEmail("user10@test.com");
 		sampleService.insertMember(vo);
 		
 		System.out.println("아래쪽은 입력 후 리스트 입니다.");
@@ -94,7 +97,7 @@ public class SampleMapperTest {
 		int cnt = 1;
 		for(MemberVO vo:list) {
 			System.out.print("회원인덱스[" + cnt + "]:");
-			vo.toString();
+			System.out.println(vo.toString());
 			cnt = cnt + 1;
 		}
 	}
@@ -106,10 +109,10 @@ public class SampleMapperTest {
 		
 		MemberVO vo = new MemberVO();
 		//*학생작업
-		//vo.setUserid("user2");
-		//vo.setUserpw("1234");
-		//vo.setUsername("바야바");
-		//vo.setEmail("abc@abc.com");
+		vo.setUserid("user2");
+		vo.setUserpw("1234");
+		vo.setUsername("바야바");
+		vo.setEmail("abc@abc.com");
 		sampleService.updateMember(vo);
 		
 		System.out.println("아래는 수정 후 이름을 확인 하세요");

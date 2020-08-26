@@ -18,22 +18,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- *학생작업  select -->
 	<select id="selectMember" resultType="org.edu.vo.MemberVO">
-      
+      select * from member 
   	</select> 
   	
   	<!-- *학생작업 update -->
   	<update id="updateMember">
-  		
+  		update member set
+  		userpw = #{userpw},
+  		username = #{username},
+  		email = #{email},
+  		regdate = sysdate,
+  		updatedate = sysdate
+  		where 
+  		userid = #{userid}
   	</update>
   	
   	<!-- *학생작업  insert -->
 	<insert id="insertMember">
+    insert into member (userid,userpw,username,email,regdate,updatedate) 
+		values (#{userid},#{userpw},#{username},#{email},sysdate,sysdate) 
     
   	</insert>
   	
   	<!-- *학생작업  delete -->
   	<delete id="deleteMember">
-  		
+  		delete from member where userid = #{userid}
   	</delete>
   
 </mapper>
